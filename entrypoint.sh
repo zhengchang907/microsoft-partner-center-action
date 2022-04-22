@@ -1,13 +1,12 @@
 #!/bin/bash -l
 
-export token=$1
-export offerName=$2
-export planName=$3
-export filePath=$4
-export artifactVersion=$5
-export clientId=$6
-export secretValue=$7
-export tenantId=$8
+export offerName=$1
+export planName=$2
+export filePath=$3
+export artifactVersion=$4
+export clientId=$5
+export secretValue=$6
+export tenantId=$7
 export fileName=$(basename ${filePath})
 
 validate_status() {
@@ -287,7 +286,8 @@ update_package_reference() {
 }
 
 generate_partner_center_token() {
-    curl -X POST -d 'grant_type=client_credentials' -d 'client_id=${clientId}' -d 'client_secret=${secretValue}' -d 'resource=https://api.partner.microsoft.com' https://login.microsoftonline.com/${tenantId}/oauth2/token
+    tokenJson=$(curl -X POST -d 'grant_type=client_credentials' -d 'client_id=${clientId}' -d 'client_secret=${secretValue}' -d 'resource=https://api.partner.microsoft.com' https://login.microsoftonline.com/${tenantId}/oauth2/token)
+    token=$(echo ${tokenJson} | jq -r '.access_token')
 }
 
 generate_partner_center_token

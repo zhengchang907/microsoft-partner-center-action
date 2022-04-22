@@ -2,9 +2,6 @@
 name: 'Update Partner Center offer artifact'
 description: 'Update Partner Center offer artifact'
 inputs:
-  token:
-    description: 'Authentication token of Partner Center'
-    required: true
   offerName:
     description: 'Offer name'
     required: true
@@ -34,7 +31,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.token }} 
     - ${{ inputs.offerName }} 
     - ${{ inputs.planName }} 
     - ${{ inputs.filePath }} 

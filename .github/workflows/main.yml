@@ -18,7 +18,6 @@ on:
         default: '1.0.0'
 
 env:
-    token: ${{ secrets.TOKEN }}
     offerName: ${{ github.event.inputs.offerName }}
     planName: ${{ github.event.inputs.planName }}
     filePath: ${{ github.event.inputs.filePath }}
@@ -41,7 +40,6 @@ jobs:
         id: hello
         uses: zhengchang907/microsoft-partner-center-action@v1
         with:
-          token: ${{ env.token }}
           offerName: ${{ env.offerName }}
           planName: ${{ env.planName }}
           filePath: ${{ env.filePath }}
