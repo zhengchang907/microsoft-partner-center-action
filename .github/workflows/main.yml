@@ -23,6 +23,9 @@ env:
     planName: ${{ github.event.inputs.planName }}
     filePath: ${{ github.event.inputs.filePath }}
     artifactVersion: ${{ github.event.inputs.artifactVersion }}
+    clientId: ${{ secrets.CLIENT_ID }}
+    secretValue: ${{ secrets.SECRET_VALUE }}
+    tenantId: ${{ secrets.TENANT_ID }}
 
 jobs:
   update_artifact_job:
@@ -43,3 +46,7 @@ jobs:
           planName: ${{ env.planName }}
           filePath: ${{ env.filePath }}
           artifactVersion: ${{ env.artifactVersion }}
+          clientId: ${{ env.clientId }}
+          secretValue: ${{ env.secretValue }}
+          tenantId: ${{ env.tenantId }}
+           

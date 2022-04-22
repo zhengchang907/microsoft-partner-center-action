@@ -18,6 +18,18 @@ inputs:
     description: 'Artifact version'
     required: true
     default: '1.0.0'
+  clientId:
+    description: "client id"
+    required: true
+    default: 'invalid'
+  secretValue:
+    description: "secret value"
+    required: true
+    default: 'invalid'
+  tenantId:
+    description: "tenant id"
+    required: true
+    default: 'invalid'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -27,3 +39,6 @@ runs:
     - ${{ inputs.planName }} 
     - ${{ inputs.filePath }} 
     - ${{ inputs.artifactVersion }}
+    - ${{ inputs.clientId }}
+    - ${{ inputs.secretValue }}
+    - ${{ inputs.tenantId }}
