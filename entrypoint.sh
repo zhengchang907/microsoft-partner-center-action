@@ -19,6 +19,13 @@ validate_status() {
 
 # Get product by name
 get_product_id() {
+    echo "curl --fail -X GET \
+    https://api.partner.microsoft.com/v1.0/ingestion/products \
+    -H \"Authorization: Bearer ${token}\" \
+    -H \"accept: application/json\""
+
+    echo "${token}"
+
     productsOutput=$(curl --fail -X GET \
     https://api.partner.microsoft.com/v1.0/ingestion/products \
     -H "Authorization: Bearer ${token}" \
@@ -288,6 +295,8 @@ update_package_reference() {
 generate_partner_center_token() {
     tokenJson=$(curl -X POST -d 'grant_type=client_credentials' -d 'client_id=${clientId}' -d 'client_secret=${secretValue}' -d 'resource=https://api.partner.microsoft.com' https://login.microsoftonline.com/${tenantId}/oauth2/token)
     token=$(echo ${tokenJson} | jq -r '.access_token')
+    echo $token
+    export token=$token
 }
 
 generate_partner_center_token
